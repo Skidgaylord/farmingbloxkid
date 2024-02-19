@@ -2806,7 +2806,8 @@ function()
     end
 end
 )
-local ToggleLevel = Tabs.Cuttay:AddToggle("ToggleLevel", {Title = "Cuttay/Kaitan Account Farming", Default = false})
+ 
+local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {Title = "Auto Level", Default = false})
 ToggleLevel:OnChanged(
     function(Value)
         _G.AutoLevel = Value
@@ -2899,6 +2900,67 @@ spawn(
                                     end
                                 end
                             end
+                        end
+                    end
+                )
+            end
+        end
+    end
+)
+
+local ToggleCandy =
+    Tabs.Main:AddToggle("ToggleCandy", {Title = "Auto Farm Candy ( Only Max Level )", Default = false})
+ToggleCandy:OnChanged(
+    function(Value)
+        _G.AutoCandy = Value
+    end
+)
+Options.ToggleCandy:SetValue(false)
+
+local CandyPos = CFrame.new(-16603.197265625, 130.3873748779297, 1087.16455078125)
+spawn(
+    function()
+        while wait() do
+            if _G.AutoCandy then
+                pcall(
+                    function()
+                        toTargetP(CandyPos)
+                        if
+                            game:GetService("Workspace").Enemies:FindFirstChild("Isle Outlaw") or
+                                game:GetService("Workspace").Enemies:FindFirstChild("Island Boy") or
+                                game:GetService("Workspace").Enemies:FindFirstChild("Sun-kissed Warrior") or
+                                game:GetService("Workspace").Enemies:FindFirstChild("Isle Champion")
+                         then
+                            for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if
+                                    v.Name == "Isle Outlaw" or v.Name == "Island Boy" or
+                                        v.Name == "Sun-kissed Warrior" or
+                                        v.Name == "Isle Champion"
+                                 then
+                                    if
+                                        v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and
+                                            v.Humanoid.Health > 0
+                                     then
+                                        repeat
+                                            wait(_G.Fast_Delay)
+                                            AttackNoCD()
+                                            bringmob = true
+                                            AutoHaki()
+                                            EquipTool(SelectWeapon)
+                                            toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX, posY, posZ))
+                                            v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
+                                            v.HumanoidRootPart.Transparency = 1
+                                            v.Humanoid.JumpPower = 0
+                                            v.Humanoid.WalkSpeed = 0
+                                            v.HumanoidRootPart.CanCollide = false
+                                            FarmPos = v.HumanoidRootPart.CFrame
+                                            MonFarm = v.Name
+                                        until not _G.AutoCandy or not v.Parent or v.Humanoid.Health <= 0
+                                        bringmob = false
+                                    end
+                                end
+                            end
+                            toTarget(CFrame.new(-16599.1484375, 154.2681121826172, -166.32186889648438))
                         end
                     end
                 )
