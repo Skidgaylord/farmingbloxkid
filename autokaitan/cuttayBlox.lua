@@ -13,8 +13,8 @@ local Window =
     {
         Title = "Wildcard Hub",
         SubTitle = "discord.gg/5H8JWZbW4X",
-        TabWidth = 160,
-        Size = UDim2.fromOffset(530, 350),
+        TabWidth = 260,
+        Size = UDim2.fromOffset(630, 450),
         Acrylic = true,
         Theme = "Dark",
         MinimizeKey = Enum.KeyCode.End
@@ -145,7 +145,7 @@ do
                                     if v.Name == "God's Guard [Lv. 450]" then
                                         getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,35,5))
                                      else
-                                         _G.AutoFarmLv = false
+                                         _G.AutoLevel = false
                                          BringMobFarm = false
                                          UnEquipWeapon(_G.Select_Weapon)
                                         CFrameMon = CFrame.new(-4716.95703, 853.089722, -1933.92542, -0.93441087, -6.77488776e-09, -0.356197298, 1.12145182e-08, 1, -4.84390199e-08, 0.356197298, -4.92565206e-08, -0.93441087)
@@ -167,7 +167,7 @@ do
                                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                             repeat task.wait()
                                                 EquipWeapon(_G.Select_Weapon)
-                                                _G.AutoFarmLv = true
+                                                _G.AutoLevel = true
                                                 v.HumanoidRootPart.CanCollide = false
                                                 v.Humanoid.WalkSpeed = 0
                                                 v.Head.CanCollide = false
@@ -186,7 +186,7 @@ do
                                     if v.Name == "God's Guard [Lv. 450]" then
                                         getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,35,5))
                                      else
-                                         _G.AutoFarmLv = true
+                                         _G.AutoLevel = true
                                          BringMobFarm = false
                                          UnEquipWeapon(_G.Select_Weapon)
                                         CFrameMon = CFrame.new(-4716.95703, 853.089722, -1933.92542, -0.93441087, -6.77488776e-09, -0.356197298, 1.12145182e-08, 1, -4.84390199e-08, 0.356197298, -4.92565206e-08, -0.93441087)
@@ -236,15 +236,15 @@ do
                            end
                                 elseif MyLevel >= 300 and MyLevel <= 2550 then
                               if QuestC.Visible == false then
-                                _G.AutoFarmLv = true
+                                _G.AutoLevel = true
                                 else
-                                _G.AutoFarmLv = true
+                                _G.AutoLevel = true
                                 end
                                else
-                                    _G.AutoFarmLv = true
+                                    _G.AutoLevel = true
                                end
                           end
-                         if _G.AutoFarmLv then
+                         if _G.AutoLevel then
                                 CheckQuest()
                                 if QuestC.Visible == false then
                                     CheckQuest()
